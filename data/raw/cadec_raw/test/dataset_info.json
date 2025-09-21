@@ -1,0 +1,58 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "cadec-ner-dataset-clean",
+  "dataset_size": 1639518,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/akramRedjdal/cadec-ner-dataset-clean@699647babc111cfbc75f9e1117935f3cc8d924f0/data/train-00000-of-00001.parquet": {
+      "num_bytes": 238180,
+      "checksum": null
+    },
+    "hf://datasets/akramRedjdal/cadec-ner-dataset-clean@699647babc111cfbc75f9e1117935f3cc8d924f0/data/test-00000-of-00001.parquet": {
+      "num_bytes": 69507,
+      "checksum": null
+    }
+  },
+  "download_size": 307687,
+  "features": {
+    "tokens": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "List"
+    },
+    "labels": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "List"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 1947205,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 1311132,
+      "num_examples": 1000,
+      "dataset_name": "cadec-ner-dataset-clean"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 328386,
+      "num_examples": 250,
+      "dataset_name": "cadec-ner-dataset-clean"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

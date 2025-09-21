@@ -1,0 +1,12 @@
+{
+  "n_train_examples": 800,
+  "n_dev_examples": 200,
+  "n_test_examples": 250,
+  "label_counts": {
+    "B-ADR": 5913,
+    "O": 103158,
+    "I-ADR": 8490,
+    "B-Drug": 1794,
+    "I-Drug": 198
+  }
+}

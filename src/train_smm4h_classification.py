@@ -76,7 +76,7 @@ def compute_metrics(p):
 # ============== Training ======================
 args = TrainingArguments(
     output_dir="results/smm4h_classification_biobert",
-    evaluation_strategy="epoch",
+    eval_strategy="epoch",
     save_strategy="epoch",
     learning_rate=2e-5,
     per_device_train_batch_size=16,

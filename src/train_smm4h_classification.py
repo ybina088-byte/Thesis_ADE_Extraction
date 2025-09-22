@@ -1,5 +1,6 @@
 # src/train_smm4h_classification.py
 import os
+os.environ["WANDB_DISABLED"] = "true"
 import numpy as np
 from datasets import load_from_disk
 from transformers import (

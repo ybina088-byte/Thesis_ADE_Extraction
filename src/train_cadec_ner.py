@@ -68,7 +68,7 @@ def compute_metrics(p):
 # ============== Training ======================
 args = TrainingArguments(
     output_dir="results/cadec_ner_biobert",
-    eval_strategy="epoch",
+    evaluation_strategy="epoch",
     save_strategy="epoch",
     learning_rate=2e-5,
     per_device_train_batch_size=8,

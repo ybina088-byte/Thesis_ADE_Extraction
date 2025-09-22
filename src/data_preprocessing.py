@@ -60,8 +60,9 @@ def preprocess_cadec():
 # SMM4H Subtask3: Concept Normalization
 # =========================
 from datasets import Dataset, DatasetDict
+from collections import Counter
 
-def preprocess_smm4h_subtask3():
+def preprocess_smm4h_subtask3(min_freq: int = 5):
     base_path = RAW_DIR / "smm4h_2017" / "subtask3"
 
     # Collect all training files
@@ -89,7 +90,7 @@ def preprocess_smm4h_subtask3():
                 })
         return examples
 
-    # Load all training sets and evaluation set
+    # Load training and eval
     train_examples = []
     for f in train_files:
         if f.exists():
@@ -99,24 +100,36 @@ def preprocess_smm4h_subtask3():
 
     eval_examples = parse_file(eval_file) if eval_file.exists() else []
 
-    # Convert to HuggingFace Dataset
+    # Count frequencies in training
+    label_counts = Counter([ex["label"] for ex in train_examples])
+    rare_labels = {lbl for lbl, cnt in label_counts.items() if cnt < min_freq}
+
+    # Replace rare codes with "OTHER"
+    def replace_rare(ex):
+        if ex["label"] in rare_labels:
+            ex["label"] = "OTHER"
+        return ex
+
+    train_examples = [replace_rare(ex) for ex in train_examples]
+    eval_examples = [replace_rare(ex) for ex in eval_examples]
+
+    # Convert to HF dataset
     hf_train = Dataset.from_list(train_examples)
-    hf_eval  = Dataset.from_list(eval_examples)
+    hf_eval = Dataset.from_list(eval_examples)
 
     ds_out = DatasetDict({
         "train": hf_train,
         "test": hf_eval
     })
 
-    # Save to disk
+    # Save
     out_dir = PROCESSED_DIR / "hf_smm4h_subtask3"
     ds_out.save_to_disk(out_dir)
-    print(f"✅ Saved SMM4H Subtask3 to {out_dir}")
+    print(f"✅ Saved SMM4H Subtask3 (with rare codes grouped to OTHER) to {out_dir}")
 
-    # Quick sanity stats
-    print(ds_out)
-    print("\nExample from train split:")
-    print(hf_train[0])
+    # Stats
+    print(f"Unique labels after grouping: {len(set(hf_train['label']))}")
+    print("Top 10 labels:", Counter(hf_train["label"]).most_common(10))
 
     return ds_out
 

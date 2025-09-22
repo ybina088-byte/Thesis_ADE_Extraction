@@ -74,10 +74,8 @@ def compute_metrics(p):
     }
 
 # ============== Training ======================
-args = TrainingArguments(
 training_args_kwargs = dict(
     output_dir="results/smm4h_classification_biobert",
-    eval_strategy="epoch",
     save_strategy="epoch",
     learning_rate=2e-5,
     per_device_train_batch_size=16,
@@ -90,6 +88,7 @@ training_args_kwargs = dict(
     greater_is_better=True,
 )
 
+# Handle version difference automatically
 if "evaluation_strategy" in TrainingArguments.__init__.__code__.co_varnames:
     training_args_kwargs["evaluation_strategy"] = "epoch"
 else:
@@ -103,7 +102,7 @@ trainer = Trainer(
     model=model,
     args=args,
     train_dataset=tokenized["train"],
-    eval_dataset=tokenized["test"],  # ⚠️ test used as validation (no val set available)
+    eval_dataset=tokenized["test"],  # ⚠️ test used as validation
     tokenizer=tokenizer,
     data_collator=data_collator,
     compute_metrics=compute_metrics,

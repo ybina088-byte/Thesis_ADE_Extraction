@@ -68,6 +68,7 @@ def compute_metrics(p):
 
 # ============== Training ======================
 args = TrainingArguments(
+training_args_kwargs = dict(
     output_dir="results/cadec_ner_biobert",
     eval_strategy="epoch",
     save_strategy="epoch",
@@ -82,8 +83,12 @@ args = TrainingArguments(
     greater_is_better=True,
 )
 
-args = TrainingArguments(**training_args_kwargs)
+if "evaluation_strategy" in TrainingArguments.__init__.__code__.co_varnames:
+    training_args_kwargs["evaluation_strategy"] = "epoch"
+else:
+    training_args_kwargs["eval_strategy"] = "epoch"
 
+args = TrainingArguments(**training_args_kwargs)
 
 data_collator = DataCollatorForTokenClassification(tokenizer)
 

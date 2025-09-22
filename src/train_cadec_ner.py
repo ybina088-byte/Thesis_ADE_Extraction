@@ -67,10 +67,8 @@ def compute_metrics(p):
     }
 
 # ============== Training ======================
-args = TrainingArguments(
 training_args_kwargs = dict(
     output_dir="results/cadec_ner_biobert",
-    eval_strategy="epoch",
     save_strategy="epoch",
     learning_rate=2e-5,
     per_device_train_batch_size=8,
@@ -83,6 +81,7 @@ training_args_kwargs = dict(
     greater_is_better=True,
 )
 
+# Handle version difference
 if "evaluation_strategy" in TrainingArguments.__init__.__code__.co_varnames:
     training_args_kwargs["evaluation_strategy"] = "epoch"
 else:

@@ -89,11 +89,6 @@ args = TrainingArguments(
     greater_is_better=True,
 )
 
-if "evaluation_strategy" in TrainingArguments.__init__.__code__.co_varnames:
-    training_args_kwargs["evaluation_strategy"] = "epoch"
-else:
-    training_args_kwargs["eval_strategy"] = "epoch"
-
 args = TrainingArguments(**training_args_kwargs) 
 
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)

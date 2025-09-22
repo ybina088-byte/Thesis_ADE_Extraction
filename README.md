@@ -1,12 +1,6 @@
-Perfect 👍 Let’s draft a **clear and professional `README.md`** for your GitHub repository. This will explain your thesis project, its purpose, datasets, methods, and how others can reproduce your results.
-
-Here’s a first version:
-
----
-
 # Thesis\_ADE\_Extraction
 
-## 📖 Project Overview
+## Project Overview
 
 This repository contains the implementation for my MSc Thesis:
 **"Interpretable Extraction of Adverse Drug Events (ADEs): Comparing Biomedical Transformers and Large Language Models"**
@@ -15,7 +9,7 @@ The project investigates how **biomedical transformer models** (BioBERT, PubMedB
 
 ---
 
-## 🎯 Research Question
+## Research Question
 
 **RQ2:**
 How do biomedical transformer models (BioBERT, PubMedBERT) compare with Large Language Models (e.g., BioGPT, GPT-based prompting) in extracting ADEs from benchmark datasets (CADEC, SMM4H)?
@@ -23,7 +17,7 @@ Can LLMs provide competitive or superior results in few-shot and zero-shot setti
 
 ---
 
-## 📌 Objectives
+## Objectives
 
 1. Implement and evaluate baseline transformer models (BioBERT, PubMedBERT) for:
 
@@ -36,7 +30,7 @@ Can LLMs provide competitive or superior results in few-shot and zero-shot setti
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 Thesis_ADE_Extraction/
@@ -74,7 +68,7 @@ Thesis_ADE_Extraction/
 
 ---
 
-## ⚙️ Installation
+# Installation
 
 Clone the repository and install dependencies:
 
@@ -87,7 +81,7 @@ conda activate ade-thesis
 
 ---
 
-## 📊 Datasets
+## Datasets
 
 * **CADEC** – Consumer Adverse Drug Effect Corpus (NER, entity-level ADE extraction).
 * **SMM4H Subtask 3** – Social Media Mining for Health dataset (ADE normalization/classification).
@@ -96,7 +90,7 @@ Both are preprocessed into **HuggingFace format** in `data/processed/`.
 
 ---
 
-## 🚀 Training & Evaluation
+## Training & Evaluation
 
 ### 1. CADEC (NER with BioBERT)
 
@@ -114,7 +108,7 @@ Logs and model checkpoints are saved in `logs/` and `models/`.
 
 ---
 
-## 📈 Results (so far)
+## Results (so far)
 
 * **CADEC NER (BioBERT):** strong micro-F1 ≈ **0.91** (baseline established).
 * **SMM4H Classification (BioBERT, 10 epochs):** accuracy ≈ **85%**, macro-F1 ≈ **0.42**.
@@ -123,7 +117,7 @@ Next: PubMedBERT baselines + LLM prompting.
 
 ---
 
-## 🏁 Roadmap
+## Roadmap
 
 * [x] Baseline transformers (BioBERT on CADEC + SMM4H)
 * [ ] PubMedBERT baselines
@@ -134,14 +128,10 @@ Next: PubMedBERT baselines + LLM prompting.
 
 ---
 
-## 📜 Expected Contributions
+## Expected Contributions
 
 * Systematic comparison of **biomedical transformers vs. LLMs** for pharmacovigilance.
 * Insights into whether **LLMs can replace or complement** domain-specific models.
 * Transparent and interpretable ADE extraction pipeline.
 
----
 
-👉 This is a clean, professional README. You can update the **Results** section as you run more experiments.
-
-Would you like me to also include **example outputs** (like sample predictions from CADEC/SMM4H) in the README so it looks more illustrative?
